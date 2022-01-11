@@ -6,10 +6,11 @@ GetSnackBar customGetSnackBar({
   required String message,
 }) {
   return GetSnackBar(
+    dismissDirection: DismissDirection.up,
     backgroundColor: Colors.red,
     padding: const EdgeInsets.all(10),
     snackPosition: SnackPosition.TOP,
-    duration: const Duration(seconds: 2),
+    duration: const Duration(seconds: 5),
     maxWidth: 500,
     margin: const EdgeInsets.all(10),
     titleText: Center(

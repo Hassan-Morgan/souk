@@ -23,11 +23,13 @@ class SendEmail extends StatelessWidget {
             body: Stack(
               children: [
                 Form(
+                  key: formKey,
                   child: Center(
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.5,
+                      margin: EdgeInsets.all(MediaQuery.of(context).size.width*0.1),
+                      padding: const EdgeInsets.all(30),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: ColorManager.blackColor),
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

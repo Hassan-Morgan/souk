@@ -13,28 +13,20 @@ import 'package:soukapp/view/user_auth/signup_page/signup_page.dart';
 class AuthController extends GetxController {
   bool loading = false;
 
-  resetPassword({required String code, required String newPassword}) async {
-    await ResetPassword.resetPassword(code: code, newPassword: newPassword);
-    if (FirebaseSignOut.error == null) {
-      loading = false;
-      Get.offAll(const LogInPage());
-    } else {
-      loading = false;
-      update();
-      Get.showSnackbar(
-        customGetSnackBar(
-          title: 'Sign Out error',
-          message: FirebaseSignOut.error!,
-        ),
-      );
-    }
-  }
 
   sendResetPasswordCode({required String email}) async {
-    await ResetPassword.sendResetCode(email: email);
-    if (FirebaseSignOut.error == null) {
+    loading = true;
+    update();
+    await ResetAccountPassword.sendResetCode(email: email);
+    if (ResetAccountPassword.error == null) {
       loading = false;
-      Get.to(ResetPassword());
+      Get.offAll(const LogInPage());
+      Get.showSnackbar(
+        customGetSnackBar(
+          title: 'reset password',
+          message: 'please check your email',
+        ),
+      );
     } else {
       loading = false;
       update();

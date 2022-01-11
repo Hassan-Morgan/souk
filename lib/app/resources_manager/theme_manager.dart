@@ -7,6 +7,9 @@ class ThemeManager {
   static ThemeData lightTheme = ThemeData(
     appBarTheme: const AppBarTheme(
       color: ColorManager.whiteColor,
+      iconTheme: IconThemeData(
+        color: ColorManager.blackColor
+      ),
       centerTitle: true,
       elevation: 0.0,
       systemOverlayStyle: SystemUiOverlayStyle(

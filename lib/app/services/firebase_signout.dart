@@ -6,6 +6,7 @@ class FirebaseSignOut {
   static String? error;
 
   static Future<void> signOut() async {
+    error = null;
     FirebaseAuth auth = FirebaseAuth.instance;
     try {
       await auth.signOut();
