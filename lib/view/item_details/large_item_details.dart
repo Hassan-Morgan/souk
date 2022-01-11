@@ -6,6 +6,7 @@ import 'package:soukapp/view/custom_widgets/large_app_top_bar.dart';
 class LargeItemDetails extends StatelessWidget {
   const LargeItemDetails({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,12 +32,35 @@ class LargeItemDetails extends StatelessWidget {
                         children: [
                           Text(
                             'the item name',
-                            style: Theme.of(context).textTheme.subtitle1,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline1
+                                ?.copyWith(fontSize: 24),
                           ),
                           const SizedBox(
                             height: 20,
                           ),
-                          const Text('Choose Colors You Want'),
+                          Row(
+                            children: [
+                              Text(
+                                'Size : ',
+                                style: Theme.of(context).textTheme.subtitle1,
+                              ),
+                              DropdownButton(
+                                  items: ['l', 'xl', 'xxl']
+                                      .map((e) =>
+                                          DropdownMenuItem(child: Text(e),value: e,))
+                                      .toList(),
+                                  onChanged: (value) => print(value) ,)
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            'Choose Colors And quantity You Want',
+                            style: Theme.of(context).textTheme.subtitle1,
+                          ),
                           Column(
                             children: colorsList
                                 .map((e) => Row(
@@ -50,33 +74,47 @@ class LargeItemDetails extends StatelessWidget {
                                           height: 30,
                                           decoration: BoxDecoration(
                                             border: Border.all(),
-                                              color: e, shape: BoxShape.circle,),
+                                            color: e,
+                                            shape: BoxShape.circle,
+                                          ),
                                         ),
                                         const SizedBox(
                                           width: 10,
                                         ),
                                         Slider(
+                                          max: 5,
                                           value: 0,
                                           onChanged: (value) {},
-                                          divisions: 20,
+                                          divisions: 5,
                                         ),
                                       ],
                                     ))
                                 .toList(),
                           ),
-                          const SizedBox(
-                            height: 20,
+                          Row(
+                            children: [
+                              Text(
+                                'Total Items : ',
+                                style: Theme.of(context).textTheme.subtitle1,
+                              ),
+                              Text('0'),
+                            ],
                           ),
-                          CustomButton(onPress: (){}, buttonName: 'Add to Favorites'),
                           const SizedBox(
                             height: 20,
                           ),
                           CustomButton(
-                              onPress: () {}, buttonName: 'Add To Cart')
+                              onPress: () {}, buttonName: 'Add to Favorites'),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          CustomButton(
+                              onPress: () {}, buttonName: '    Add To Cart   ')
                         ],
                       ),
                     ),
                   ),
+
                 ],
               ),
             ],

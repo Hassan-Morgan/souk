@@ -11,5 +11,6 @@ class IconManger {
   static const Icon bottomNavigationCat = Icon(Icons.category);
   static const Icon bottomNavigationAccount = Icon(Icons.person);
   static const Icon leadingIcon = Icon(Icons.view_list_sharp);
+  static const Icon codeIcon = Icon(Icons.qr_code);
 
 }

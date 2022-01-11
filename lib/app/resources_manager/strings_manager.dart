@@ -45,5 +45,4 @@ class StringsManager {
   static const String babiesCategory = 'Boys Clothes';
   static const String boysCategory = 'Boys Clothes';
   static const String girlsCategory = 'Girls Clothes';
-
 }

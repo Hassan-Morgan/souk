@@ -9,8 +9,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constrains) {
-      return constrains.maxWidth < 500
-          ? const AppLayout()
+      return constrains.maxWidth < 600
+          ?  AppLayout()
           : const LargeHomePage();
     });
   }

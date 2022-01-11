@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1054469295335",
+    "project_id": "souk-f53b5",
+    "storage_bucket": "souk-f53b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054469295335:android:608b926442f365dbcce642",
+        "android_client_info": {
+          "package_name": "com.example.soukapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054469295335-qv9rfulp05g2vbb45k98ou3f4cdq66sa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.soukapp",
+            "certificate_hash": "1196b24746319a320d764815c8f03c06f2ba1926"
+          }
+        },
+        {
+          "client_id": "1054469295335-rg36djit4nc6icosl8mvijj9tl95f1bt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBY8nHypsWhzSo_I1Uq_XRLhRtAMw0JAhE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054469295335-rg36djit4nc6icosl8mvijj9tl95f1bt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

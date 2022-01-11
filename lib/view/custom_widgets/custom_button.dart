@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soukapp/app/resources_manager/color_manager.dart';
 
 class CustomButton extends StatelessWidget {
   final dynamic onPress;
@@ -11,22 +10,10 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 10),
-      decoration: const BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-                color: ColorManager.blackColor,
-                spreadRadius: 1,
-                offset: Offset(2, 2))
-          ],
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [ColorManager.primaryColor, ColorManager.greyColor])),
-      child: MaterialButton(
-        onPressed: onPress,
+    return ElevatedButton(
+      onPressed: onPress,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.15, vertical: 17),
         child: Text(buttonName, style: Theme.of(context).textTheme.button),
       ),
     );
