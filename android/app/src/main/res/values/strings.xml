@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">souk_app - Test1</string>
+    <string name="facebook_app_id">501496697959833</string>
+    <string name="fb_login_protocol_scheme">fb501496697959833</string>
+</resources>

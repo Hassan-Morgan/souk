@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:soukapp/app/controller/auth_controller.dart';
-import 'package:soukapp/app/resources_manager/color_manager.dart';
 import 'package:soukapp/app/resources_manager/icon_manager.dart';
 import 'package:soukapp/app/resources_manager/strings_manager.dart';
 import 'package:soukapp/view/custom_widgets/custom_button.dart';
@@ -10,10 +9,6 @@ import 'package:soukapp/view/custom_widgets/custom_text_form_feild.dart';
 class SignupPart extends StatelessWidget {
   SignupPart({Key? key}) : super(key: key);
 
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController userNameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -41,7 +36,7 @@ class SignupPart extends StatelessWidget {
                   height: 25,
                 ),
                 CustomTextFormField(
-                  textController: userNameController,
+                  textController: controller.userNameController,
                   labelText: StringsManager.signupUserNameField,
                   isSecure: false,
                   validation: (value) {
@@ -57,7 +52,7 @@ class SignupPart extends StatelessWidget {
                   height: 20,
                 ),
                 CustomTextFormField(
-                  textController: phoneController,
+                  textController: controller.phoneController,
                   labelText: StringsManager.signupPhoneField,
                   isSecure: false,
                   validation: (value) {
@@ -73,7 +68,7 @@ class SignupPart extends StatelessWidget {
                   height: 20,
                 ),
                 CustomTextFormField(
-                  textController: emailController,
+                  textController: controller.emailController,
                   labelText: StringsManager.loginEmailField,
                   isSecure: false,
                   validation: (value) {
@@ -89,7 +84,7 @@ class SignupPart extends StatelessWidget {
                   height: 20,
                 ),
                 CustomTextFormField(
-                  textController: passwordController,
+                  textController: controller.passwordController,
                   labelText: StringsManager.loginPasswordField,
                   isSecure: true,
                   validation: (value) {
@@ -110,11 +105,7 @@ class SignupPart extends StatelessWidget {
                 CustomButton(
                   onPress: () {
                     if (formKey.currentState!.validate()) {
-                      controller.signupWithUserNameAndPassword(
-                          userName: userNameController.text,
-                          email: emailController.text,
-                          password: passwordController.text,
-                          phoneNumber: phoneController.text);
+                      controller.signupWithUserNameAndPassword();
                     }
                   },
                   buttonName: StringsManager.signupButtonName,

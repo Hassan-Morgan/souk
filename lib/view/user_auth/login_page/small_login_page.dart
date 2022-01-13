@@ -40,11 +40,20 @@ class SmallLogInPage extends StatelessWidget {
                       Row(
                         children: [
                           const Spacer(),
-                          socialMediaLogin(logo: AssetsManager.facebookLogo),
+                          InkWell(
+                            onTap: () {
+                              controller.loginWithFacebook();
+                            },
+                            child: socialMediaLogin(
+                                logo: AssetsManager.facebookLogo),
+                          ),
                           const Spacer(),
-                          socialMediaLogin(logo: AssetsManager.googleLogo),
-                          const Spacer(),
-                          socialMediaLogin(logo: AssetsManager.twitterLogo),
+                          InkWell(
+                              onTap: () {
+                                controller.loginWithGoogle();
+                              },
+                              child: socialMediaLogin(
+                                  logo: AssetsManager.googleLogo)),
                           const Spacer(),
                         ],
                       ),
@@ -53,8 +62,7 @@ class SmallLogInPage extends StatelessWidget {
                 ),
               ),
             ),
-            if (controller.loading)
-              const LoadingPage(),
+            if (controller.loading) const LoadingPage(),
           ],
         ),
       ),

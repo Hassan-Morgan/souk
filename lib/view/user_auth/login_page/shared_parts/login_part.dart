@@ -9,9 +9,8 @@ import 'package:soukapp/view/custom_widgets/custom_text_form_feild.dart';
 class LoginPart extends StatelessWidget {
   LoginPart({Key? key}) : super(key: key);
 
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+ final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class LoginPart extends StatelessWidget {
               height: 25,
             ),
             CustomTextFormField(
-              textController: emailController,
+              textController: controller.emailController,
               labelText: StringsManager.loginEmailField,
               isSecure: false,
               validation: (value) {
@@ -53,7 +52,7 @@ class LoginPart extends StatelessWidget {
               height: 20,
             ),
             CustomTextFormField(
-              textController: passwordController,
+              textController: controller.passwordController,
               labelText: StringsManager.loginPasswordField,
               isSecure: true,
               validation: (value) {
@@ -79,9 +78,7 @@ class LoginPart extends StatelessWidget {
             CustomButton(
                 onPress: () {
                   if (formKey.currentState!.validate()) {
-                    controller.loginWithEmailAndPassword(
-                        email: emailController.text,
-                        password: passwordController.text);
+                    controller.loginWithEmailAndPassword();
                   }
                 },
                 buttonName: StringsManager.loginButtonName),

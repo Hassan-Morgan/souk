@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:soukapp/app/services/facebook_login.dart';
 import 'package:soukapp/app/services/firebase_login.dart';
 import 'package:soukapp/app/services/firebase_reset_password.dart';
 import 'package:soukapp/app/services/firebase_signout.dart';
 import 'package:soukapp/app/services/firebase_signup.dart';
+import 'package:soukapp/app/services/google_login.dart';
 import 'package:soukapp/view/custom_widgets/custom_snack_bar.dart';
 import 'package:soukapp/view/home_page/home_page.dart';
 import 'package:soukapp/view/user_auth/forgot_password/send_email.dart';
@@ -13,6 +15,87 @@ import 'package:soukapp/view/user_auth/signup_page/signup_page.dart';
 class AuthController extends GetxController {
   bool loading = false;
 
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+
+  webLoginWithGoogle() async {
+    loading = true;
+    update();
+    await GoogleLogin.webSignInWithGoogle();
+    if (GoogleLogin.error == null) {
+      loading = false;
+      Get.offAll(const HomePage());
+    } else {
+      loading = false;
+      update();
+      Get.showSnackbar(
+        customGetSnackBar(
+          title: 'Login Error',
+          message: GoogleLogin.error!,
+        ),
+      );
+    }
+  }
+
+
+  loginWithGoogle() async {
+    loading = true;
+    update();
+    await GoogleLogin.signInWithGoogle();
+    if (GoogleLogin.error == null) {
+      loading = false;
+      Get.offAll(const HomePage());
+    } else {
+      loading = false;
+      update();
+      Get.showSnackbar(
+        customGetSnackBar(
+          title: 'Login Error',
+          message: GoogleLogin.error!,
+        ),
+      );
+    }
+  }
+
+  webLoginWithFacebook() async {
+    loading = true;
+    update();
+    await FacebookLogin.webSignInWithFacebook();
+    if (FacebookLogin.error == null) {
+      loading = false;
+      Get.offAll(const HomePage());
+    } else {
+      loading = false;
+      update();
+      Get.showSnackbar(
+        customGetSnackBar(
+          title: 'Login error',
+          message: FacebookLogin.error!,
+        ),
+      );
+    }
+  }
+
+  loginWithFacebook() async {
+    loading = true;
+    update();
+    await FacebookLogin.signInWithFacebook();
+    if (FacebookLogin.error == null) {
+      loading = false;
+      Get.offAll(const HomePage());
+    } else {
+      loading = false;
+      update();
+      Get.showSnackbar(
+        customGetSnackBar(
+          title: 'Login error',
+          message: FacebookLogin.error!,
+        ),
+      );
+    }
+  }
 
   sendResetPasswordCode({required String email}) async {
     loading = true;
@@ -32,7 +115,7 @@ class AuthController extends GetxController {
       update();
       Get.showSnackbar(
         customGetSnackBar(
-          title: 'Sign Out error',
+          title: 'Reset password error',
           message: FirebaseSignOut.error!,
         ),
       );
@@ -57,16 +140,11 @@ class AuthController extends GetxController {
     }
   }
 
-  signupWithUserNameAndPassword({
-    required String userName,
-    required String email,
-    required String password,
-    required String phoneNumber,
-  }) async {
+  signupWithUserNameAndPassword() async {
     loading = true;
     update();
     await FirebaseSignup.signupWithEmailAndPassword(
-        email: email, password: password);
+        email: emailController.text, password: passwordController.text);
     if (FirebaseSignup.error == null) {
       loading = false;
       Get.offAll(const HomePage());
@@ -79,12 +157,11 @@ class AuthController extends GetxController {
     }
   }
 
-  loginWithEmailAndPassword(
-      {required String email, required String password}) async {
+  loginWithEmailAndPassword() async {
     loading = true;
     update();
     await FirebaseLoginWithEmail.loginWithEmailAndPassword(
-        email: email, password: password);
+        email: emailController.text, password: passwordController.text);
     if (FirebaseLoginWithEmail.error == null) {
       loading = false;
       Get.offAll(const HomePage());

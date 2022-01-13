@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:soukapp/app/controller/auth_controller.dart';
 import 'package:soukapp/app/controller/home_page_controller.dart';
 import 'package:soukapp/app/resources_manager/color_manager.dart';
 import 'package:soukapp/app/resources_manager/icon_manager.dart';
@@ -12,7 +13,9 @@ import 'package:soukapp/view/home_page/shared_parts/home_body.dart';
 import 'package:soukapp/view/home_page/shared_parts/home_header.dart';
 
 class LargeHomePage extends StatelessWidget {
-  const LargeHomePage({Key? key}) : super(key: key);
+   LargeHomePage({Key? key}) : super(key: key);
+
+ final AuthController controller2 = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +71,11 @@ class LargeHomePage extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: (){
+                controller2.signOut();
+              },
             ),
           );
         });
