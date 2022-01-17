@@ -41,7 +41,7 @@ class SignupPart extends StatelessWidget {
                   isSecure: false,
                   validation: (value) {
                     if (value.isEmpty) {
-                      return 'User name can\'t be empty';
+                      return StringsManager.emptyEmailField;
                     }
                     return null;
                   },
@@ -57,7 +57,7 @@ class SignupPart extends StatelessWidget {
                   isSecure: false,
                   validation: (value) {
                     if (value.isEmpty) {
-                      return 'Phone number can\'t be empty';
+                      return StringsManager.emptyPhoneField;
                     }
                     return null;
                   },
@@ -73,7 +73,7 @@ class SignupPart extends StatelessWidget {
                   isSecure: false,
                   validation: (value) {
                     if (value.isEmpty) {
-                      return 'Email can\'t be empty';
+                      return StringsManager.emptyEmailField;
                     }
                     return null;
                   },
@@ -88,11 +88,8 @@ class SignupPart extends StatelessWidget {
                   labelText: StringsManager.loginPasswordField,
                   isSecure: true,
                   validation: (value) {
-                    if (value.isEmpty) {
-                      return 'Password can\'t be empty';
-                    }
-                    if (value.length < 8) {
-                      return 'password can\'t be less than 8 characters';
+                    if (value.isEmpty || value.length < 8) {
+                      return StringsManager.emptyPasswordField;
                     }
                     return null;
                   },
@@ -113,8 +110,8 @@ class SignupPart extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Wrap(
+                  alignment: WrapAlignment.center,
                   children: [
                     Text(
                       StringsManager.signupHaveAccount,

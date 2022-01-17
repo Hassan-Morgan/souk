@@ -9,8 +9,7 @@ import 'package:soukapp/view/custom_widgets/custom_text_form_feild.dart';
 class LoginPart extends StatelessWidget {
   LoginPart({Key? key}) : super(key: key);
 
-
- final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +40,7 @@ class LoginPart extends StatelessWidget {
               isSecure: false,
               validation: (value) {
                 if (value.isEmpty) {
-                  return 'E-mail can\'t be empty';
+                  return StringsManager.emptyEmailField;
                 }
                 return null;
               },
@@ -57,7 +56,7 @@ class LoginPart extends StatelessWidget {
               isSecure: true,
               validation: (value) {
                 if (value.isEmpty) {
-                  return 'password can\'t be empty';
+                  return StringsManager.emptyPasswordField;
                 }
                 return null;
               },
@@ -85,8 +84,8 @@ class LoginPart extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Wrap(
+              alignment: WrapAlignment.center,
               children: [
                 Text(
                   StringsManager.loginNoAccount,

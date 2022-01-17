@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:soukapp/app/services/facebook_login.dart';
-import 'package:soukapp/app/services/firebase_login.dart';
-import 'package:soukapp/app/services/firebase_reset_password.dart';
-import 'package:soukapp/app/services/firebase_signout.dart';
-import 'package:soukapp/app/services/firebase_signup.dart';
-import 'package:soukapp/app/services/google_login.dart';
+import 'package:soukapp/app/services/authentication/facebook_login.dart';
+import 'package:soukapp/app/services/authentication/firebase_login.dart';
+import 'package:soukapp/app/services/authentication/firebase_reset_password.dart';
+import 'package:soukapp/app/services/authentication/firebase_signout.dart';
+import 'package:soukapp/app/services/authentication/firebase_signup.dart';
+import 'package:soukapp/app/services/authentication/google_login.dart';
+import 'package:soukapp/app/services/fierstore/firestore_add_user.dart';
 import 'package:soukapp/view/custom_widgets/custom_snack_bar.dart';
 import 'package:soukapp/view/home_page/home_page.dart';
 import 'package:soukapp/view/user_auth/forgot_password/send_email.dart';
@@ -25,28 +26,63 @@ class AuthController extends GetxController {
     update();
     await GoogleLogin.webSignInWithGoogle();
     if (GoogleLogin.error == null) {
-      loading = false;
-      Get.offAll(const HomePage());
+      if (GoogleLogin.userCredential!.additionalUserInfo!.isNewUser) {
+        await FirestoreAddUser.addSocialUser(
+            userCredential: GoogleLogin.userCredential!);
+        if (FirestoreAddUser.error == null) {
+          loading = false;
+          Get.offAll(const HomePage());
+        } else {
+          loading = false;
+          update();
+          Get.showSnackbar(
+            customGetSnackBar(
+              title: 'Login Error',
+              message: FirestoreAddUser.error!,
+            ),
+          );
+        }
+      } else {
+        loading = false;
+        Get.offAll(const HomePage());
+      }
     } else {
       loading = false;
       update();
       Get.showSnackbar(
         customGetSnackBar(
           title: 'Login Error',
-          message: GoogleLogin.error!,
+          message: GoogleLogin.error ?? FirestoreAddUser.error!,
         ),
       );
     }
   }
-
 
   loginWithGoogle() async {
     loading = true;
     update();
     await GoogleLogin.signInWithGoogle();
     if (GoogleLogin.error == null) {
-      loading = false;
-      Get.offAll(const HomePage());
+      if (GoogleLogin.userCredential!.additionalUserInfo!.isNewUser) {
+        await FirestoreAddUser.addSocialUser(
+            userCredential: GoogleLogin.userCredential!);
+        if (FirestoreAddUser.error == null) {
+          loading = false;
+          Get.offAll(const HomePage());
+        } else {
+          loading = false;
+          update();
+          Get.showSnackbar(
+            customGetSnackBar(
+              title: 'Login Error',
+              message: FirestoreAddUser.error!,
+            ),
+          );
+        }
+      } else {
+        loading = false;
+        Get.offAll(const HomePage());
+      }
     } else {
       loading = false;
       update();
@@ -64,8 +100,26 @@ class AuthController extends GetxController {
     update();
     await FacebookLogin.webSignInWithFacebook();
     if (FacebookLogin.error == null) {
-      loading = false;
-      Get.offAll(const HomePage());
+      if (FacebookLogin.userCredential!.additionalUserInfo!.isNewUser) {
+        await FirestoreAddUser.addSocialUser(
+            userCredential: FacebookLogin.userCredential!);
+        if (FacebookLogin.error == null) {
+          loading = false;
+          Get.offAll(const HomePage());
+        } else {
+          loading = false;
+          update();
+          Get.showSnackbar(
+            customGetSnackBar(
+              title: 'Login error',
+              message: FirestoreAddUser.error!,
+            ),
+          );
+        }
+      } else {
+        loading = false;
+        Get.offAll(const HomePage());
+      }
     } else {
       loading = false;
       update();
@@ -83,8 +137,26 @@ class AuthController extends GetxController {
     update();
     await FacebookLogin.signInWithFacebook();
     if (FacebookLogin.error == null) {
-      loading = false;
-      Get.offAll(const HomePage());
+      if (FacebookLogin.userCredential!.additionalUserInfo!.isNewUser) {
+        await FirestoreAddUser.addSocialUser(
+            userCredential: FacebookLogin.userCredential!);
+        if (FirestoreAddUser.error == null) {
+          loading = false;
+          Get.offAll(const HomePage());
+        } else {
+          loading = false;
+          update();
+          Get.showSnackbar(
+            customGetSnackBar(
+              title: 'Login error',
+              message: FirestoreAddUser.error!,
+            ),
+          );
+        }
+      } else {
+        loading = false;
+        Get.offAll(const HomePage());
+      }
     } else {
       loading = false;
       update();
@@ -146,10 +218,21 @@ class AuthController extends GetxController {
     await FirebaseSignup.signupWithEmailAndPassword(
         email: emailController.text, password: passwordController.text);
     if (FirebaseSignup.error == null) {
-      loading = false;
-      Get.offAll(const HomePage());
-    }
-    if (FirebaseSignup.error != null) {
+      await FirestoreAddUser.addUser(
+          userId: FirebaseSignup.user!.uid,
+          userName: userNameController.text,
+          email: emailController.text,
+          phoneNumber: phoneController.text);
+      if (FirestoreAddUser.error == null) {
+        loading = false;
+        Get.offAll(const HomePage());
+      } else {
+        loading = false;
+        update();
+        Get.showSnackbar(customGetSnackBar(
+            title: 'Signup Error', message: FirebaseSignup.error!));
+      }
+    } else {
       loading = false;
       update();
       Get.showSnackbar(customGetSnackBar(

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:soukapp/app/controller/auth_controller.dart';
-import 'package:soukapp/app/resources_manager/assets_manager.dart';
-import 'package:soukapp/app/resources_manager/color_manager.dart';
-import 'package:soukapp/app/resources_manager/strings_manager.dart';
 import 'package:soukapp/view/custom_widgets/default_loading_page.dart';
 import 'package:soukapp/view/custom_widgets/shared_social_media_login.dart';
 import 'package:soukapp/view/user_auth/signup_page/shared_parts/signup_fields.dart';

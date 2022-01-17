@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:soukapp/app/resources_manager/strings_manager.dart';
 
 class FirebaseSignup {
+
+  static User? user;
   static String? error;
 
   static Future<void> signupWithEmailAndPassword(
@@ -10,10 +13,11 @@ class FirebaseSignup {
     try {
       UserCredential credential = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
+      user = credential.user;
     } on FirebaseAuthException catch (e) {
       error = e.message;
     }catch(e){
-      error = 'something went wrong please check your internet connection';
+      error = StringsManager.connectionError;
     }
   }
 }
