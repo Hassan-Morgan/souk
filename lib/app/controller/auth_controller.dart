@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:soukapp/app/resources_manager/strings_manager.dart';
 import 'package:soukapp/app/services/authentication/facebook_login.dart';
 import 'package:soukapp/app/services/authentication/firebase_login.dart';
 import 'package:soukapp/app/services/authentication/firebase_reset_password.dart';
@@ -9,6 +10,7 @@ import 'package:soukapp/app/services/authentication/google_login.dart';
 import 'package:soukapp/app/services/fierstore/firestore_add_user.dart';
 import 'package:soukapp/view/custom_widgets/custom_snack_bar.dart';
 import 'package:soukapp/view/home_page/home_page.dart';
+import 'package:soukapp/view/seller_screens/home_seller_screen.dart';
 import 'package:soukapp/view/user_auth/forgot_password/send_email.dart';
 import 'package:soukapp/view/user_auth/login_page/login_page.dart';
 import 'package:soukapp/view/user_auth/signup_page/signup_page.dart';
@@ -247,7 +249,11 @@ class AuthController extends GetxController {
         email: emailController.text, password: passwordController.text);
     if (FirebaseLoginWithEmail.error == null) {
       loading = false;
-      Get.offAll(const HomePage());
+      if(FirebaseLoginWithEmail.user!.email == StringsManager.sellerDefaultEmail) {
+        Get.offAll(const SellerHome());
+      }else{
+        Get.offAll(const HomePage());
+      }
     }
     if (FirebaseLoginWithEmail.error != null) {
       loading = false;

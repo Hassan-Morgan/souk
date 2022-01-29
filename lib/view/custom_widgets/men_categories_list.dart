@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soukapp/app/resources_manager/color_manager.dart';
+import 'package:soukapp/app/resources_manager/constants.dart';
 import 'package:soukapp/app/resources_manager/strings_manager.dart';
 
 class MenCategoriesList extends StatelessWidget {
@@ -11,7 +12,7 @@ class MenCategoriesList extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          padding:const EdgeInsets.all(10) ,
+          padding: const EdgeInsets.all(10),
           color: ColorManager.greyColor,
           child: Text(
             StringsManager.menCategories,
@@ -26,47 +27,15 @@ class MenCategoriesList extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextButton(
-                onPressed: () {},
-                child: const Text(StringsManager.sportsCategory),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text(StringsManager.formalAndSuitesCategory),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text(StringsManager.casualCategory),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text(StringsManager.indoorCategory),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text(StringsManager.underWearCategory),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Text(StringsManager.accessoriesCategory),
-              ),
-            ],
+            children: menCategories
+                .map((e) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: TextButton(
+                        onPressed: () {},
+                        child: Text(e),
+                      ),
+                ))
+                .toList(),
           ),
         ),
       ],

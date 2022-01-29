@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:soukapp/app/controller/text_form_field_controller.dart';
 
@@ -9,9 +10,13 @@ class CustomTextFormField extends StatelessWidget {
   final Icon prefixIcon;
   final TextInputType keyType;
   final TextEditingController textController;
+  final int? maxLines;
+  final bool? isNumber;
 
   const CustomTextFormField({
     Key? key,
+    this.isNumber,
+    this.maxLines,
     required this.labelText,
     required this.isSecure,
     required this.validation,
@@ -25,9 +30,15 @@ class CustomTextFormField extends StatelessWidget {
     return GetBuilder<TextFormFieldController>(
       init: TextFormFieldController(),
       builder: (controller) => TextFormField(
+        inputFormatters: isNumber == true
+            ? [
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+              ]
+            : null,
         controller: textController,
         keyboardType: keyType,
         validator: validation,
+        maxLines: maxLines ?? 1,
         obscureText: isSecure ? controller.isVisible : isSecure,
         decoration: InputDecoration(
           labelText: labelText,

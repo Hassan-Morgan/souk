@@ -97,57 +97,6 @@ Widget _categoriesMenu(context) {
   );
 }
 
-Widget _brandsMenu(context) {
-  List<String> list = [
-    'h&m',
-    'adidas',
-    'nike',
-    'h&m',
-    'adidas',
-    'nike',
-    'h&m',
-    'adidas',
-    'nike',
-    'h&m',
-    'adidas',
-    'nike',
-    'h&m',
-    'adidas',
-    'nike',
-    'h&m',
-    'adidas',
-    'nike',
-    'h&m',
-    'adidas',
-    'nike',
-    'h&m',
-    'adidas',
-    'nike',
-    'h&m',
-    'adidas',
-    'nike',
-    'h&m',
-    'adidas',
-    'nike',
-    'h&m',
-    'adidas',
-    'nike',
-    'h&m',
-    'adidas',
-    'nike',
-    'h&m',
-    'adidas',
-    'nike',
-  ];
-
-  return Wrap(
-    children: list
-        .map(
-            (e) => Container(padding: const EdgeInsets.all(20), child: Text(e)))
-        .toList(),
-  );
-}
-
 Widget _searchBar(context) {
   return SizedBox(
     width: MediaQuery.of(context).size.width * 0.6,

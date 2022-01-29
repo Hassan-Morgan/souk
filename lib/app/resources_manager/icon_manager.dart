@@ -12,5 +12,8 @@ class IconManger {
   static const Icon bottomNavigationAccount = Icon(Icons.person);
   static const Icon leadingIcon = Icon(Icons.view_list_sharp);
   static const Icon codeIcon = Icon(Icons.qr_code);
-
+  static const Icon productIcon = Icon(Icons.shopping_basket);
+  static const Icon descriptionIcon = Icon(Icons.details);
+  static const Icon priceIcon = Icon(Icons.attach_money);
+  static const Icon deleteIcon = Icon(Icons.delete);
 }

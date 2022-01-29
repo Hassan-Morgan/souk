@@ -57,12 +57,22 @@ class StringsManager {
   //firebase
   static const String connectionError = 'Unexpected error happened! please try again';
 
-  //home
-  static const String homeAppBarTitle = 'Home';
   //seller page
+  static const String homeAppBarTitle = 'Seller Home';
+  static const String sellerDefaultEmail = 'seller@souk.com';
   static const String sellerAddProduct = 'Add Product';
-  static const String sellerDeleteProduct = 'Add Product';
-  static const String sellerAddOffer = 'Add Product';
-  static const String sellerDeleteOffer = 'Add Product';
-
+  static const String sellerDeleteProduct = 'Remove Product';
+  static const String sellerAddOffer = 'Add Offer';
+  static const String sellerDeleteOffer = 'Remove Offer';
+  static const String sellerNewOrders = 'New Orders';
+  static const String sellerAllOrders = 'Previous Orders';
+  static const String sellerInShipping = 'Products in shipping';
+  static const String productName = 'Product Name';
+  static const String productDescription = 'Product Description';
+  static const String productPrice = 'Product Price';
+  static const String productQuantity = 'Product quantity';
+  static const String addProductImages = 'Add Product Images';
+  static const String selectProductGender = 'Select Gender';
+  static const String selectProductCategory = 'Select Category';
+  static const String addProductColors = 'Select Product colors';
 }
